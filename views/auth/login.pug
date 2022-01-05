@@ -1,0 +1,13 @@
+doctype html 
+html 
+    head 
+        title Login 
+    body    
+        form(method = 'post', action = '/login')
+            div 
+                label 아이디: 
+                input#username-input(name = 'username', type = 'text')
+            div     
+                label 비밀번호: 
+                input#password-input(name = 'password', type = 'password')
+            button(type = 'submit') 로그인
