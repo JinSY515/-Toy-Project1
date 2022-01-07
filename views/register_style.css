@@ -1,0 +1,57 @@
+.Body{
+    background : lightsteelblue;
+    width : 600px;
+    position : absolute;
+    top : 50%;
+    left : 50%;
+    transform : translate(-50%, -50%);
+    min-width : 400px;
+    border-radius : 15%;
+    box-shadow : 5px 5px 5px 5px lightgray;
+}
+
+.Body h3{
+    text-align: center;
+}
+
+.submit_btn{
+    margin-top : 50px;
+    width : 400px;
+    height : 30px;
+    border : none;
+
+}
+
+.submit_btn:hover{
+    background-color: tomato;
+}
+
+
+.Form {
+    padding-left : 10%;
+    margin : 30px;
+}
+
+.Form div{
+    width : 450px;
+}
+
+.Form input{
+    width : 70%;
+    height : 40px;
+    padding-right : 0%;
+    margin : 5px 5px 5px 0;
+    border : none;
+    border-bottom: solid;
+    background-color: transparent;
+    
+}
+
+.Form label{
+    width : 20%;
+    height : 45px;
+    text-align: right ;
+    border-bottom: solid;
+    padding-bottom: 12px;
+    margin : 5px 0 5px 5px;
+}

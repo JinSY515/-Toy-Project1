@@ -2,9 +2,9 @@
 
 const { runQuery } = require('../lib/database');
 
-const createName = async (username, pwd, displayName) => {
-    const sql = 'INSERT INTO users (username, pwd, displayName) value (?, ?, ?);';
-    await runQuery(sql, [username, pwd, displayName]);
+const createAccount = async (userid, name, phone, password) => {
+    const sql = 'INSERT INTO users (userid, name, phone, password) value (?, ?, ?, ?);';
+    await runQuery(sql, [userid, name, phone, password]);
 };
 
 const getByUsername = async username => {
@@ -14,6 +14,6 @@ const getByUsername = async username => {
 };
 
 module.exports = {
-    createName,
+    createAccount,
     getByUsername,
 };

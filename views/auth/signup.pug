@@ -2,18 +2,27 @@ doctype html
 html 
     head 
         title 회원가입
+        style 
+            include ../register_style.css 
     body    
-        form(method = 'post', action = '/login')
-            div 
-                label 아이디: 
-                input#username-input(name = 'username', type = 'text')
-            div     
-                label 이메일:
-                input#email-input(name = 'email', type ='email')
-            div     
-                label 비밀번호: 
-                input#password-input(name = 'password', type = 'password')
-            div     
-                label 비밀번호-확인: 
-                input#password-input(name = 're_password', type = 'password')
-            button(type = 'submit') 로그인
+        .Body 
+            .Logo 
+                h3 회원가입
+            .Form 
+                form(method = 'post', action = '/login')
+                    div 
+                        label 아이디       
+                        input#username-input(name = 'username', type = 'text', placeholder = '6 ~ 16자리 영문,숫자')
+                    div     
+                        label 이름        
+                        input#nickname-input(name = 'nickname', type ='text')
+                    div 
+                        label phone        
+                        input#phone-input(name ='phone', type = 'text', placeholder = '01012345678')
+                    div     
+                        label 비밀번호       
+                        input#password-input(name = 'password', type = 'password', placeholder = '8 ~ 24자리 영문, 숫자, 특수문자')
+                    div     
+                        label 비밀번호 확인  
+                        input#password-input(name = 're_password', type = 'password', placeholder = '8 ~ 24자리 영문, 숫자, 특수문자')
+                    button.submit_btn(type = 'submit') 가입하기

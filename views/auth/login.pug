@@ -1,13 +1,13 @@
-doctype html 
-html 
-    head 
-        title Login 
-    body    
-        form(method = 'post', action = '/login')
-            div 
-                label 아이디: 
-                input#username-input(name = 'username', type = 'text')
-            div     
-                label 비밀번호: 
-                input#password-input(name = 'password', type = 'password')
-            button(type = 'submit') 로그인
+extends ../layout.pug
+
+block title 
+    | 로그인
+block content 
+    form#LoginForm(method = 'post', action = '/login')
+        div 
+            input#username-input(name = 'username', type = 'text' placeholder = '아이디')
+        div     
+
+            input#password-input(name = 'password', type = 'password' placeholder = '비밀번호')
+        button#login_btn(type = 'submit') 로그인
+        

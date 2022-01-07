@@ -1,0 +1,60 @@
+//전체적인 레이아웃, 상단바
+
+doctype html 
+html 
+    head 
+        title 
+            block title 
+        meta(charset='utf-8')
+        meta(name='viewport', content = 'width=device-width, initial-scale=1')
+        style 
+            include style.css
+        //link(rel ='stylesheet', href='./style.css')
+    body 
+        .navbar
+            .Logo 
+                a(href='/') 
+                    h1 Ticket 
+            .navbar-li
+                ul 
+                    if user 
+                        li.nav-item 
+                            a.nav-link(href='logout') 로그아웃
+                        li.nav-item 
+                            a.nav-link(href='/user_info') 회원정보
+                        li.nav-item 
+                            a.nav-link(href='/booked') 예매확인/취소
+                    else 
+                        li.nav-item 
+                            a.nav-link(href='/login') 로그인
+                        li.nav-item 
+                            a.nav-link(href='/signup') 회원가입
+                        li.nav-item 
+                            a.nav-link(href='/booked') 예매확인/취소
+        .menu 
+            .menu-nav-li 
+                ul 
+                
+                    li.menu-item 
+                        a.menu-link(href='/musical') 뮤지컬
+                        ul.submenu
+                            li
+                                a(href='/musical/original') 오리지널
+                            li 
+                                a(href='/musical/visiting') 내한공연
+                            li 
+                                a(href='/musical/made') 창작뮤지컬
+                            
+                    li.menu-item 
+                        a.menu-link(href='/concert') 콘서트
+                        ul.submenu
+                            li 발라드
+                            li 록/메탈
+                            li 내한공연
+                            li 페스티벌
+                    li.menu-item 
+                        a.menu-link(href='/movie') 영화
+                    li.menu-item 
+                        a.menu-link(href='/play') 연극
+        .Body 
+            block content

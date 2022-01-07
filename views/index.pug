@@ -1,16 +1,4 @@
-doctype html 
-html 
-    head 
-        title Main Page 
-        meta(charset='utf-8')
-    body 
-        .page-header 
-            h3 Ticket 
-            ul 
-                li  
-                    a(href='/login') 로그인
-                li 
-                    a(href='/signup') 회원가입
-        .page-body 
-            |Page Body 
-            |Hello World!
+extends layout.pug 
+
+block title 
+    | 메인화면

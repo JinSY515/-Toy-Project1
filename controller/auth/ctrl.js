@@ -22,7 +22,7 @@ const logIn = async (req, res, next) => {
         if (!user) throw new Error('UNAUTHORIZED');
         const validPwd = await verifyPassword(password, user.password);
         if (!validPwd) throw new Error('UNAUTHORIZED');
-        
+
         req.session.user = {
             id : user.id,
             username : user.username,
@@ -59,11 +59,17 @@ const signUpForm = async (req, res, next) => {
 
 const signUp = async (req, res, next) => {
     try{
-        const { username, password, displayName } = req.body;
-        if(!username || !password || !displayName) throw new Error('BAD_REQUEST');
+        const { userid, name, phone, password, repassword } = req.body;
+        //하나라도 빠질 경우 bad request, 
+        //password != repassword일 경우에도 bad request,
+
+        if(!userid|| !name || !phone || !password || !repassword) throw new Error('BAD_REQUEST');
+        if(password!=repassword) throw new Error('BAD_REQUEST');
+
+        //중복확인?
         const hashedPwd = await generatePassword(password);
-        await UserDAO.createName(username, hashedPwd, displayName);
-        return res.redirect('/login');
+        await UserDAO.createAccount(userid, name, phone, hashedPwd);
+        return res.redirect('/');
     }catch(err){
         return next(err);
     }
