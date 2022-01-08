@@ -1,0 +1,27 @@
+extends ../layout.pug
+
+block title
+    | 뮤지컬
+
+block content 
+    div.window#info
+        .productMain 
+            h2 뮤지컬 
+            label 평점 ***** 
+        .productSummary 
+            div 
+                img(src="http://ticketimage.interpark.com/TCMS3.0/MU/TOP_2/2109/210914053422_21008252.gif", alt="이미지를 불러 올 수 없습니다." width = 130, height = 160 )
+            div 
+                ul 
+                    li 
+                        label 장소
+                    li 
+                        label 공연기간
+                    li 
+                        label 관람연령
+                    li 
+                        label 가격
+
+                
+    div.window#reservation
+        h3 여기 달력

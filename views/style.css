@@ -114,3 +114,20 @@
     margin : 15px 5px 0 5px ;
     border:none;
 }
+
+.window {
+    display: inline-block;
+}
+
+.window#reservation{
+    background-color: tomato;
+    width : 300px;
+    height : 450px;
+    position:absolute;
+    right : 50px;
+    top : 200px;
+}
+
+.productSummary div{
+    display: inline-block;
+}

@@ -21,17 +21,14 @@
     border : none;
 
 }
-
 .submit_btn:hover{
     background-color: tomato;
 }
-
 
 .Form {
     padding-left : 10%;
     margin : 30px;
 }
-
 .Form div{
     width : 450px;
 }

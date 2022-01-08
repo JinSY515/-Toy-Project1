@@ -3,9 +3,10 @@ extends ../layout.pug
 block title 
     | 로그인
 block content 
+
     form#LoginForm(method = 'post', action = '/login')
         div 
-            input#username-input(name = 'username', type = 'text' placeholder = '아이디')
+            input#username-input(name = 'userid', type = 'text' placeholder = '아이디')
         div     
 
             input#password-input(name = 'password', type = 'password' placeholder = '비밀번호')
