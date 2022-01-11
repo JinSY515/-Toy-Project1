@@ -16,18 +16,26 @@ const logInForm = async (req, res, next) => {
 
 const logIn = async (req, res, next) => {
     try {
+
+        if(req.session.user) {
+            res.send(getAlertScript('이미 로그인되어 메인 화면으로 이동합니다.'));
+            return res.redirect('/');
+        }
+
         const { userid, password } = req.body;
         if (!userid || !password) throw new Error('INPUT_FAIL');
         const user = await UserDAO.getByUserID(userid);
         if (!user) throw new Error('UNAUTHORIZED');
         const validPwd = await verifyPassword(password, user.password);
         if (!validPwd) throw new Error('UNAUTHORIZED');
+        
         req.session.user = {
-            userid : user.userid,
+            id : user.userid,
             name : user.name,
             //추가?
         };
-        req.session.save(function(){
+        
+        return req.session.save(()=> {
             return res.redirect('/');
         })
        

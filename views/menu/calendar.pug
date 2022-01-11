@@ -1,0 +1,28 @@
+//달력 틀 만들기
+doctype html 
+html(lang='ko')
+    head 
+        script(type = 'text/javascript', src='./ui.js')
+        script(src = './jquery-3.2.1.min.js')
+    body
+    table#calendar 
+        thead 
+            tr 
+            td 
+                input(type = 'button' value = "<") 
+                td#cal-month
+                input(type = 'button' value = ">")
+        tbody 
+            tr 
+            td.cal-Sun 일
+            td 월
+            td 화
+            td 수
+            td 목
+            td 금
+            td.cal-Sat 토
+
+         script 
+            document.innerHTML = "aaaaa";       
+
+    
