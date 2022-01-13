@@ -22,8 +22,11 @@
   "homepage": "https://github.com/JinSY515/-Toy-Project1#readme",
   "dependencies": {
     "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.2",
     "express-session": "^1.17.2",
+    "fullcalendar": "^5.10.1",
+    "jsdom": "^19.0.0",
     "mysql2": "^2.3.3",
     "pug": "^3.0.2"
   },

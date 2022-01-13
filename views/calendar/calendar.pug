@@ -1,0 +1,44 @@
+//달력 틀 만들기
+doctype html 
+
+- var today = new Date(); 
+
+
+
+p Hi, Today is #{today}.
+html(lang='ko')
+    head 
+        
+        //script(src = '../menu/jquery-3.2.1.min.js')
+        //script(src= '/ui.js')
+
+        link(rel = 'stylesheet' src= './calendar.css')
+        style  
+            include calendar.css
+
+        
+    body
+        
+        table#calendar 
+            thead 
+                tr 
+                td 
+                    input(type = 'button' value = "<" onclick = 'prevCalendar') 
+                    td#cal-month
+                        p #{month}
+                td
+                    input(type = 'button' value = ">" onclick = 'nextCalendar')
+            tbody 
+                tr 
+                td.cal-Sun 일
+                td 월
+                td 화
+                td 수
+                td 목
+                td 금
+                td.cal-Sat 토
+                
+        
+   
+
+    

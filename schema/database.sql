@@ -34,8 +34,30 @@ CREATE TABLE ticket_price(
 
 
 CREATE TABLE datetable(
-
+    musical_id INT NOT NULL,
+    show_date DATE NOT NULL,
+    
+    casting
+    PRIMARY KEY(musical_id, show_date)
 )
+
+CREATE TABLE roles(
+    musical_id INT NOT NULL,
+    role_name VARCHAR(20) NOT NULL,
+    PRIMARY KEY(musical_id),
+    FOREIGN KEY(musical_id) REFERENCES FROM musicals(musical_id)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+CREATE TABLE actors(
+    musical_id INT NOT NULL,
+    show_date DATE NOT NULL,
+    role_name VARCHAR(20) NOT NULL, 
+    actor_name VARCHAR(10) NOT NULL,
+    PRIMARY KEY(musical_id, role_name, show_date).
+    FOREIGN KEY(musical_id) REFERENCES FROM musicals(musical_id),
+    FOREIGN KEY(role_name) REFERENCES FROM roles(role_name),
+    FOREIGN KEY(show_date) REFERENCES FROM datetable(show_date)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 CREATE TABLE timetable(
 

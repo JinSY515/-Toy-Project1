@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script type ='text/javascript' src = 'jquery-3.2.1.min.js'></script>
+
+    <script type ='text/javascript' src = '/calendar.js'></script>
+    
+    <title>calendar</title>
+</head>
+<body>
+    <script src="http://code.jquery.com/jquery-latest.js"></script> 
+    <table id ='date_controller'>
+        <tr>
+            <td><input type="button" value = "<" onclick="prevCalendar()"></td>
+            <td id = 'cal-month'></td>
+            <td><input type="button" value = ">" onclick = "nextCalendar()"></td>
+
+        </tr>
+       
+    </table>
+    <table id = 'calendar'>
+        
+        
+   
+        <tr>
+            <td class = 'cal-Sun'>일</td>
+            <td>월</td>
+            <td>화</td>
+            <td>수</td>
+            <td>목</td>
+            <td>금</td>
+            <td class = 'cal-Sat'>토</td>
+        </tr>
+            
+        
+    </table> 
+    
+    <script>
+        var today = new Date();
+        createCalendar();
+        function selected(value){
+            $('nav .day').removeClass('on');
+            $('nav #'+value+'').addClass('on');
+            console.log(value);
+        }
+        function createCalendar(){
+            var firstDate = new Date(today.getFullYear(), today.getMonth(), 1);
+            var lastDate = new Date(today.getFullYear(), today.getMonth()+ 1, 0);
+            var tbCalendar= document.getElementById("calendar");
+            var tbCalendarMonth = document.getElementById("cal-month");
+
+            tbCalendarMonth.innerHTML = today.getFullYear() + "." +(today.getMonth() + 1);
+
+            while(tbCalendar.rows.length > 1){
+                tbCalendar.deleteRow(tbCalendar.rows.length-1);
+            }
+
+            var row = null;
+            row= tbCalendar.insertRow();
+            var count = 0;
+            for(i = 0; i<firstDate.getDay(); i++){
+                cell = row.insertCell();
+                count += 1;
+            }
+
+            for(i=1; i<=lastDate.getDate(); i++){
+                cell = row.insertCell();
+                
+                if(count%7==0){
+                    cell.innerHTML="<nav id='day' class = 'Sunday' >"+"<a href='#' class = 'day' id ="+i+"  onclick ='selected("+i+")'>"+ "<font color='#eb5461'>"+i+"</font>"+"</a>"+"</nav>";
+                }
+                else if(count%7==6)cell.innerHTML="<nav id = 'day' class = 'Saturday'>"+"<a href='#' class = 'day' id ="+i+"  onclick ='selected("+i+")'>"+ "<font color='#3b9af3'>"+i+"</font></a></nav>";
+                else cell.innerHTML = "<nav id ='day' class = 'WeekDay'>"+"<a href='#' class = 'day' id ="+i+"   onclick ='selected("+i+")'>"+ "<font color='black'>"+i+"</font></a></nav>";
+                
+                count +=1;
+                if(count%7==0) row = calendar.insertRow();
+            }
+        }
+        
+    
+        function prevCalendar(){
+            today=new Date(today.getFullYear(), today.getMonth()-1,today.getDate());
+            createCalendar();
+        }
+
+        function nextCalendar(){
+            today=new Date(today.getFullYear(),today.getMonth()+1,today.getDate());
+            createCalendar();
+        }
+        
+    </script>
+    <hr>
+    <section class = 'controller'>
+        <div>
+            <h3>회차</h3>
+            <div class = 'controller_btn'>
+               <button class = 'first' >1회</button>
+                <button class = 'second'>2회</button>  
+            </div>
+            
+        </div>
+        <div class = 'seat_remained'>
+            vip석
+            R석
+        </div>
+    </section>
+    <hr>
+    <section class = 'casting'>
+        <h3>캐스팅</h3>
+    </section>    
+    <button type = 'submit' id = 'reserve_btn'>예매하기</button>
+    <style>
+        .cal-Sat{
+            color : #3b9af3;
+            
+        }
+        .cal-Sun{
+            color: #eb5461;
+        }
+        #cal-month{
+            font-size : 40px;
+            font-weight: bold;
+            text-align: center;
+        }
+        #day{
+            font-size: 30px;
+        }
+        table#calendar{
+            width : 300px;
+            height : 350px;
+        }
+        table{
+            padding-right : 0;
+        }
+        table#date_controller{
+            width : 100%;
+        }
+        nav{
+            position : relative;
+            width : 40px;
+            height : 40px;
+        }
+        nav a{
+            text-align: center;
+            position : absolute; top : 0; left : 0;
+            width : 100%;
+            height : 100%;
+            border-radius: 50%;
+            text-decoration: none;
+        }
+        .on{
+            background-color :rgb(241, 55, 55);
+            width : 40px;
+            height : 40px;
+            color :white;
+        }
+        #reserve_btn{
+            width : 320px;
+            border : none;
+            background-color: lightcoral;
+            height : 40px;
+            font-size : 20px;
+            font-weight: bold;
+        }
+
+        .controller_btn{
+            width : 300px;
+        }
+
+    </style>   
+</body>
+</html>

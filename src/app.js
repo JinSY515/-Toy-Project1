@@ -13,6 +13,7 @@ app.use(session({
 
 app.set('views', `${__dirname}/../views`);
 app.set('view engine', 'pug');
+app.engine('html', require('ejs').renderFile);
 app.use(express.urlencoded({ extended : true }));
 app.use('/', controller);
 
