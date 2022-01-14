@@ -7,4 +7,20 @@ const indexPage = async (req, res, next) => {
     }
 };
 
-module.exports = { indexPage };
+const firstPageGoods = async (req, res, next) => {
+    try{
+        return res.redirect('goods/1');
+    }catch (err){
+        return next(err);
+    }
+};
+
+const GoodsList = async(req, res, next) => {
+    try{
+        console.log('goodsList');
+    } catch(err){
+
+    }
+};
+
+module.exports = { indexPage, firstPageGoods, GoodsList};

@@ -1,3 +1,3 @@
 const UserDAO = require('./user');
-
-module.exports = { UserDAO };
+const GoodsDAO = require('./goods');
+module.exports = { UserDAO, GoodsDAO };

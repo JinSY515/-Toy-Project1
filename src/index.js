@@ -2,6 +2,7 @@
 const { JSDOM } = require('jsdom');
 const app = require('./app');
 const ctrl = require('./controller/auth/ctrl');
+const menu = require('./controller/menu/ctrl');
 const port = process.env.PORT || 3000;
 
 app.get('/', function (req, res, next) {
@@ -27,10 +28,18 @@ app.get('/musical', (req, res) => {
     }
     //console.log(req.session.user);
     //console.log(req.session.user.id);
-    res.render('./menu/musical.pug', { dispname : user.name });
+    //res.render('./menu/musical.pug', { dispname : user.name });
 });
 app.get('/concert', (req, res) => res.render('./menu/concert.pug'));
-app.get('/goods', (req, res) => res.render('./menu/goods.pug'));
+app.get(`/goods/:page(\\d+)`, (req, res) =>{
+    const page = req.params.page;
+    
+    
+    console.log('index', page);
+    console.log(req.params);
+    return res.render('./menu/goods.pug', menu.readGoods );
+});
+
 
 app.post('/signup', ctrl.signUp);
 app.post('/login', ctrl.logIn);

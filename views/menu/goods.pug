@@ -4,25 +4,28 @@ block title
     | 뮤지컬
 
 block content 
-    div.window#info
+    div.window#info(style = 'position :absolute;')
         .productMain 
             h2 뮤지컬 
+            h3 #{musical_name}
             label 평점 ***** 
         .productSummary 
-            div 
-                img(src="http://ticketimage.interpark.com/TCMS3.0/MU/TOP_2/2109/210914053422_21008252.gif", alt="이미지를 불러 올 수 없습니다." width = 130, height = 160 )
+            div.posterBox(style = 'position : relative; top : 0;')
+                img(src="http://ticketimage.interpark.com/TCMS3.0/MU/TOP_2/2109/210914053422_21008252.gif", alt="이미지를 불러 올 수 없습니다." width = 300, height = 360 )
             div 
                 ul 
                     li 
-                        label 장소
+                        label 장소 
+                        a(href= 'javascript:void(0);' onclick = 'callHallInfo();') #{hall_name}
                     li 
                         label 공연기간
+                        p #{period_start} ~ #{period_end}
                     li 
                         label 관람연령
+                        p #{able_age}
                     li 
                         label 가격
-
-    
+                        p(style = 'text-align : justify') !{table}
+        
     div.window#reservation
         include ../calendar/calendar.html
-        
