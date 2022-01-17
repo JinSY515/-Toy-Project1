@@ -16,7 +16,7 @@ block content
                 ul 
                     li 
                         label 장소 
-                        a(href= 'javascript:void(0);' onclick = 'callHallInfo();') #{hall_name}
+                        a(href= 'javascript:popup();' onclick = 'popup();') #{hall_name}
                     li 
                         label 공연기간
                         p #{period_start} ~ #{period_end}
@@ -27,5 +27,65 @@ block content
                         label 가격
                         p(style = 'text-align : justify') !{table}
         
+        .productMainBody 
+            .nav 
+                .navWrapper 
+                    ul.navList
+                        li.navItem 
+                            a#navLink(href='#') 공연정보
+                        li.navItem 
+                            a#navLink(href='#') 캐스팅정보
+                        li.navItem 
+                            a#navLink(href='#') 부가정보
+                        li.navItem 
+                            a#navLink(href='#') 관람후기
+                        li.navItem 
+                            a#navLink(href='#') 기대평
+                        li.navItem 
+                            a#navLink(href='#') Q&A
+            .productContents#castingDetail 
+                .content 
+                    .castingDetailGuideText 
+                        p 공연일 및 선호하는 배우별 캐스팅일정을 조회할 수 있습니다. 
+                        p 캐스팅 일정은 배우 및 제작사의 사정에 따라 사전공지 없이 변경될 수 있습니다. 
+                    .castingDetailFilter 
+                        .filterItem 
+                            strong.filterTitle 공연기간
+                            .filterContent 
+                                .filterDateWrap 
+                                    .filterDate 
+                                        a.filterDateLabel.date(data-popup = 'filterDate-start' role = 'button')
+                                    .filterDate 
+                                        a.filterDateLabel.date(data-popup = 'filterDate-end' role = 'button')
+                                    //popup div만들기
+                                a.filterSearchBtn(href ='#') 검색
+                        hr
+                        .filterItem 
+                            strong.filterTitle 요일
+                            .filterContent 
+                                a.filterLabel(role ='checkbox' href = '#') 월요일
+                                a.filterLabel(role ='checkbox' href = '#') 화요일
+                                a.filterLabel(role ='checkbox' href = '#') 수요일
+                                a.filterLabel(role ='checkbox' href = '#') 목요일
+                                a.filterLabel(role ='checkbox' href = '#') 금요일
+                                a.filterLabel(role ='checkbox' href = '#') 토요일
+                                a.filterLabel(role ='checkbox' href = '#') 일요일
+                        hr
+                        .filterItem 
+                            strong.filterTitle 공연 시간
+                            .filterContent 
+                                a.filterLabel(role='checkbox' href='#') 14:00
+                                a.filterLabel(role='checkbox' href='#') 14:30
+                                a.filterLabel(role='checkbox' href='#') 19:00
+                                a.filterLabel(role='checkbox' href='#') 19:30
+                        hr
+                        .filterItem 
+                            strong.filterTitle 캐스팅
+                            
+                    .castingDetailResult 
+                        table.castingDetailTable
+                            thead !{casting_table}
+                            tbody !{schedule_table}
+
     div.window#reservation
         include ../calendar/calendar.html

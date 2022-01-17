@@ -41,6 +41,11 @@
     
     <script>
         var today = new Date();
+        $(document).ready(function(){
+            $('nav .day').removeClass('on');
+            $('nav #'+today.getDate()+'').addClass('on');
+        });
+        
         createCalendar();
         function selected(value){
             $('nav .day').removeClass('on');

@@ -10,9 +10,6 @@ router.get('/goods/:page(\\d+)', menu);
 //router.get('/goods/:page(\\d+)')
 router.use('/auth', auth);
 //router.use('/goods', ctrl.firstPageGoods);
-
-
-console.log('controller-index');
 //router.use('/calendar', calendar);
 
 module.exports = router;

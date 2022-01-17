@@ -25,6 +25,7 @@ CREATE TABLE musicals(
     FOREIGN KEY(hall_id) REFERENCES  concert_hall(hall_id) ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+
 CREATE TABLE tickets(
     show_date_id CHAR(8) NOT NULL,
     seat_num CHAR(6) NOT NULL,
@@ -41,33 +42,44 @@ CREATE TABLE ticket_price(
 
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
---show_date_id : YY/MM/DD/01 혹은 02, 회차
+--show_date_id : YY.MM.DD
+--time_id : 회차
+CREATE TABLE timetable(
+    time_id CHAR(2) NOT NULL,
+    time_sess CHAR(5) NOT NULL,
+    PRIMARY KEY(time_id)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
 CREATE TABLE datetable(
     musical_id CHAR(8) NOT NULL, 
     show_date_id CHAR(8) NOT NULL,
-    show_date DATETIME NOT NULL,
-    hall_id CHAR(2) NOT NULL,
-    PRIMARY KEY(musical_id, show_date_id),
-    FOREIGN KEY(hall_id) REFERENCES  concert_hall(hall_id) ON DELETE CASCADE
+    time_id CHAR(2) NOT NULL,
+    PRIMARY KEY(musical_id, show_date_id, time_id),
+    FOREIGN KEY(musical_id) REFERENCES musicals(musical_id) ON DELETE CASCADE,
+    FOREIGN KEY(time_id) REFERENCES timetable(time_id) ON DELETE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+
 
 CREATE TABLE roles(
     musical_id CHAR(8) NOT NULL,
+    role_id CHAR(2) NOT NULL,
     role_name VARCHAR(20) NOT NULL,
-    PRIMARY KEY(musical_id),
+    PRIMARY KEY(musical_id, role_id, role_name),
     FOREIGN KEY(musical_id) REFERENCES  musicals(musical_id) ON DELETE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 CREATE TABLE actors(
-    musical_id CHAR(8) NOT NULL,
-    show_date_id CHAR(8) NOT NULL,
-    role_name VARCHAR(20) NOT NULL, 
     actor_name VARCHAR(10) NOT NULL,
-    PRIMARY KEY(musical_id, role_name, show_date),
-    FOREIGN KEY(musical_id) REFERENCES  musicals(musical_id) ON DELETE CASCADE,
-    FOREIGN KEY(role_name) REFERENCES  roles(role_name) ON DELETE CASCADE,
-    FOREIGN KEY(show_date_id) REFERENCES  datetable(show_date_id) ON DELETE CASCADE
+    musical_id CHAR(8) NOT NULL,
+    role_id CHAR(2) NOT NULL,
+    show_date_id CHAR(8) NOT NULL,
+    time_id CHAR(2) NOT NULL,
+    PRIMARY KEY(actor_name, musical_id, role_id, show_date_id, time_id),
+    FOREIGN KEY(musical_id) REFERENCES musicals(musical_id) ON DELETE CASCADE
+    
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
 
 CREATE TABLE concert_hall(
     hall_id CHAR(2) NOT NULL,
@@ -111,3 +123,76 @@ INSERT INTO ticket_price VALUES('00', 'A석', 70000);
 INSERT INTO ticket_price VALUES('00', 'A가변석', 70000);
 
 -- 00이 일반적인 대극장 표 가격
+
+INSERT INTO roles VALUES('21008252','01', '빅터');
+INSERT INTO roles VALUES('21008252','02', '앙리');
+INSERT INTO roles VALUES('21008252','03', '줄리아');
+INSERT INTO roles VALUES('21008252','04', '엘렌');
+INSERT INTO roles VALUES('21008252','05', '슈테판');
+INSERT INTO roles VALUES('21008252','06', '룽게');
+
+--timetable
+INSERT INTO timetable VALUES('01', '14:00');
+INSERT INTO timetable VALUES('02', '14:30');
+INSERT INTO timetable VALUES('03', '19:00');
+INSERT INTO timetable VALUES('04', '19:30');
+
+--datetable
+INSERT INTO datetable VALUES('21008252', '22.01.18', '04');
+INSERT INTO datetable VALUES('21008252', '22.01.19', '02');
+INSERT INTO datetable VALUES('21008252', '22.01.19', '04');
+INSERT INTO datetable VALUES('21008252', '22.01.20', '04');
+INSERT INTO datetable VALUES('21008252', '22.01.21', '02');
+INSERT INTO datetable VALUES('21008252', '22.01.21', '04');
+INSERT INTO datetable VALUES('21008252', '22.01.22', '02');
+INSERT INTO datetable VALUES('21008252', '22.01.22', '04');
+
+--actors
+INSERT INTO actors VALUES('전동석', '21008252', '01', '22.01.19', '02');
+INSERT INTO actors VALUES('박은태', '21008252', '02', '22.01.19', '02');
+INSERT INTO actors VALUES('이봄소리', '21008252', '03', '22.01.19', '02');
+INSERT INTO actors VALUES('서지영', '21008252', '04', '22.01.19', '02');
+INSERT INTO actors VALUES('이희정', '21008252', '05', '22.01.19', '02');
+INSERT INTO actors VALUES('김대종', '21008252', '06', '22.01.19', '02');
+
+INSERT INTO actors VALUES('민우혁', '21008252', '01', '22.01.19', '04');
+INSERT INTO actors VALUES('카이', '21008252', '02', '22.01.19', '04');
+INSERT INTO actors VALUES('이봄소리', '21008252', '03', '22.01.19', '04');
+INSERT INTO actors VALUES('김지우', '21008252', '04', '22.01.19', '04');
+INSERT INTO actors VALUES('이희정', '21008252', '05', '22.01.19', '04');
+INSERT INTO actors VALUES('김대종', '21008252', '06', '22.01.19', '04');
+
+INSERT INTO actors VALUES('규현', '21008252', '01', '22.01.20', '04');
+INSERT INTO actors VALUES('박은태', '21008252', '02', '22.01.20', '04');
+INSERT INTO actors VALUES('해나', '21008252', '03', '22.01.20', '04');
+INSERT INTO actors VALUES('서지영', '21008252', '04', '22.01.20', '04');
+INSERT INTO actors VALUES('서현철', '21008252', '05', '22.01.20', '04');
+INSERT INTO actors VALUES('이정수', '21008252', '06', '22.01.20', '04');
+
+INSERT INTO actors VALUES('전동석', '21008252', '01', '22.01.21', '02');
+INSERT INTO actors VALUES('정택운', '21008252', '02', '22.01.21', '02');
+INSERT INTO actors VALUES('이봄소리', '21008252', '03', '22.01.21', '02');
+INSERT INTO actors VALUES('김지우', '21008252', '04', '22.01.21', '02');
+INSERT INTO actors VALUES('이희정', '21008252', '05', '22.01.21', '02');
+INSERT INTO actors VALUES('김대종', '21008252', '06', '22.01.21', '02');
+
+INSERT INTO actors VALUES('규현', '21008252', '01', '22.01.21', '04');
+INSERT INTO actors VALUES('카이', '21008252', '02', '22.01.21', '04');
+INSERT INTO actors VALUES('이봄소리', '21008252', '03', '22.01.21', '04');
+INSERT INTO actors VALUES('김지우', '21008252', '04', '22.01.21', '04');
+INSERT INTO actors VALUES('이희정', '21008252', '05', '22.01.21', '04');
+INSERT INTO actors VALUES('김대종', '21008252', '06', '22.01.21', '04');
+
+INSERT INTO actors VALUES('민우혁', '21008252', '01', '22.01.22', '02');
+INSERT INTO actors VALUES('박은태', '21008252', '02', '22.01.22', '02');
+INSERT INTO actors VALUES('해나', '21008252', '03', '22.01.22', '02');
+INSERT INTO actors VALUES('서지영', '21008252', '04', '22.01.22', '02');
+INSERT INTO actors VALUES('서현철', '21008252', '05', '22.01.22', '02');
+INSERT INTO actors VALUES('이정수', '21008252', '06', '22.01.22', '02');
+
+INSERT INTO actors VALUES('전동석', '21008252', '01', '22.01.22', '04');
+INSERT INTO actors VALUES('정택운', '21008252', '02', '22.01.22', '04');
+INSERT INTO actors VALUES('해나', '21008252', '03', '22.01.22', '04');
+INSERT INTO actors VALUES('김지우', '21008252', '04', '22.01.22', '04');
+INSERT INTO actors VALUES('서현철', '21008252', '05', '22.01.22', '04');
+INSERT INTO actors VALUES('이정수', '21008252', '06', '22.01.22', '04');

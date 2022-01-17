@@ -19,7 +19,7 @@ const GoodsList = async(req, res, next) => {
     try{
         console.log('goodsList');
     } catch(err){
-
+        return next(err);
     }
 };
 

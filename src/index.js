@@ -1,5 +1,5 @@
 //require('./env');
-const { JSDOM } = require('jsdom');
+//const { JSDOM } = require('jsdom');
 const app = require('./app');
 const ctrl = require('./controller/auth/ctrl');
 const menu = require('./controller/menu/ctrl');
