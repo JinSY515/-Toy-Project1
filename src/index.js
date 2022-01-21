@@ -33,10 +33,6 @@ app.get('/musical', (req, res) => {
 app.get('/concert', (req, res) => res.render('./menu/concert.pug'));
 app.get(`/goods/:page(\\d+)`, (req, res) =>{
     const page = req.params.page;
-    
-    
-    console.log('index', page);
-    console.log(req.params);
     return res.render('./menu/goods.pug', menu.readGoods );
 });
 
@@ -46,33 +42,11 @@ app.post('/login', ctrl.logIn);
 app.get('/logout', ctrl.logOut);
 //app.get('/goods/calendar', (req, res) => res.render('./calendar/calendar.pug'));
 app.get('/calendar', (req, res) => {
-    console.log('calendar start');
     res.render('./calendar/calendar.html');
 });
 
-//app.get('/calendar', (req, res) => res.render_template('./calendar/calendar.pug'));
-/*
-app.get('/calendar', (req, res) =>{
-    var today = new Date();
-    var month = today.getMonth() + 1;
-    var year = today.getFullYear();
-    var date = today.getDate();
-    var firstDate = new Date(today.getFullYear(), today.getMonth(), 1);
-    var lastDate = new Date(today.getFullYear(),  today.getMonth() + 1, 0);
-    console.log(dom.window.document.getElementById("main").textContent);
-    var count = 0;
-    var rows = null;
-    function createCalendar(){
-        
-        for(i=0; i<firstDate.getDay(); i++){
-            count+=1;
-        }
+//app.get('/calendar', (req, res) => res.render_template('./calendar/calendar.html'));
 
-    }
-    res.render('./calendar/calendar.pug', { month });
-    
-    createCalendar();
-});
-*/
+
 app.listen(port, ()=> console.log(`Server listening on port ${port}`));
 

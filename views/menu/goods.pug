@@ -59,7 +59,7 @@ block content
                                         a.filterDateLabel.date(data-popup = 'filterDate-end' role = 'button')
                                     //popup div만들기
                                 a.filterSearchBtn(href ='#') 검색
-                        hr
+                        
                         .filterItem 
                             strong.filterTitle 요일
                             .filterContent 
@@ -81,7 +81,6 @@ block content
                         hr
                         .filterItem 
                             strong.filterTitle 캐스팅
-                            
                     .castingDetailResult 
                         table.castingDetailTable
                             thead !{casting_table}
@@ -89,3 +88,5 @@ block content
 
     div.window#reservation
         include ../calendar/calendar.html
+        script 
+            include ../../src/controller/calendar/ui.js

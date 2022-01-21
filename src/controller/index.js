@@ -9,6 +9,7 @@ router.get('/', ctrl.indexPage);
 router.get('/goods/:page(\\d+)', menu);
 //router.get('/goods/:page(\\d+)')
 router.use('/auth', auth);
+router.get('/calendar', calendar);
 //router.use('/goods', ctrl.firstPageGoods);
 //router.use('/calendar', calendar);
 
